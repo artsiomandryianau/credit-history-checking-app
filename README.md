@@ -15,6 +15,9 @@ It uses four microservices:
 - Loan data service - responsible for accessing data from non-relational database (MongoDB).
 - Client data service - responsible for accessing data from relational databse (MySQL).
 
+<p align="center">
+  <a href ="##"><img alt="spring_vue" src="https://github.com/artsiomandryianau/SpringBoot-vue/blob/master/images/newlogo.jpg?raw=true"></a></p>
+
 Technologies
 ------------
 
