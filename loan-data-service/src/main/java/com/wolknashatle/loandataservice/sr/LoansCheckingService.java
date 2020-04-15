@@ -2,6 +2,7 @@ package com.wolknashatle.loandataservice.sr;
 
 
 import com.wolknashatle.loandataservice.models.Loan;
+import com.wolknashatle.loandataservice.models.LoanList;
 import com.wolknashatle.loandataservice.service.LoanService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -23,17 +24,17 @@ public class LoansCheckingService {
     }
 
     @RequestMapping("/client/{clientId}")
-    public List<Loan> getLoansListByClientId(@PathVariable("clientId") String id) {
-        return loanService.getLoanByClientId(Integer.parseInt(id));
+    public LoanList getLoansListByClientId(@PathVariable("clientId") String id) {
+        return new LoanList(loanService.getLoanByClientId(Integer.parseInt(id)));
     }
 
     @RequestMapping("/overdue")
-    public List<Loan> getLoansOfClient() {
-        return loanService.getListOfOverdue();
+    public LoanList getLoansOfClient() {
+        return new LoanList(loanService.getListOfOverdue());
     }
 
     @RequestMapping("/unpaid")
-    public List<Loan> getListOfNotPayed() {
-        return loanService.getListOfNotPayed();
+    public LoanList getListOfNotPayed() {
+        return new LoanList(loanService.getListOfNotPayed());
     }
 }

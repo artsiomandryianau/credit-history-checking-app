@@ -8,7 +8,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
-public class ConfigurationMongo {
+public class MongoConfig {
 
     @Value("${app.host:localhost}")
     private String host;

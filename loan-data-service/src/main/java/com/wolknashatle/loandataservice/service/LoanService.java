@@ -1,11 +1,9 @@
 package com.wolknashatle.loandataservice.service;
 
-
 import com.mongodb.*;
 import com.wolknashatle.loandataservice.models.Loan;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -16,15 +14,7 @@ import java.util.stream.Collectors;
 public class LoanService {
 
     @Autowired
-    MongoClient mongoClient;
-
-    @Autowired
-    DB db;
-
-    @Autowired
     DBCollection table;
-
-
 
     public Loan getLoanById(Integer id){
         BasicDBObject searchQuery = new BasicDBObject();
@@ -57,7 +47,9 @@ public class LoanService {
             loan.setLoan_amount((Integer)theObj.get("loan_amount"));
             list.add(loan);
         }
-        return list;
+        return list.stream()
+                .sorted(Comparator.comparing(Loan::isLoan_is_payed))
+                .collect(Collectors.toList());
     }
 
     public List<Loan> getListOfOverdue() {

@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class ClientInfoResource {
 
     @Autowired
-    ClientRepository clientRepository;
+    private ClientRepository clientRepository;
 
     @RequestMapping("/{clientId}")
     public Client getClientById(@PathVariable("clientId") String id) {
