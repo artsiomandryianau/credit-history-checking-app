@@ -5,9 +5,7 @@ import com.mongodb.*;
 import com.wolknashatle.loandataservice.detials.ProjectDetails;
 import com.wolknashatle.loandataservice.models.Loan;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
-
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -31,10 +29,19 @@ public class LoanService {
     }
 
     public Loan getLoanById(Integer id){
-        
-        return new Loan();
+        BasicDBObject searchQuery = new BasicDBObject();
+        searchQuery.put("loan_id", id);
+        DBCursor cursor = table.find(searchQuery);
+        DBObject theObj = cursor.next();
+        Loan loan = new Loan();
+        loan.setLoan_id((Integer)theObj.get("loan_id"));
+        loan.setClient_id((Integer)theObj.get("client_id"));
+        loan.setLoan_is_payed((Boolean) theObj.get("loan_is_payed"));
+        loan.setDate_loan_take((String)theObj.get("date_loan_was_taken"));
+        loan.setLoan_number_month_back((Integer)theObj.get("loan_number_month_back"));
+        loan.setLoan_amount((Integer)theObj.get("loan_amount"));
+        return loan;
     }
-
 
     public List<Loan> getListOfOverdue() {
         return getListOfNotPayed().stream()
@@ -45,18 +52,11 @@ public class LoanService {
                 .collect(Collectors.toList());
         }
 
-
-
-
-
-
     public List<Loan> getListOfNotPayed(){
         BasicDBObject searchQuery = new BasicDBObject();
         searchQuery.put("loan_is_payed", false);
         List<Loan> list = new ArrayList<>();
-
         DBCursor cursor = table.find(searchQuery);
-
         while (cursor.hasNext()) {
             DBObject theObj = cursor.next();
             Loan loan = new Loan();
@@ -70,5 +70,4 @@ public class LoanService {
         }
         return list;
     }
-
 }
