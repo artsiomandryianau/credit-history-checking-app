@@ -1,4 +1,4 @@
-package com.wolknashatle.loandataservice.sr;
+package com.wolknashatle.loandataservice.rs;
 
 
 import com.wolknashatle.loandataservice.models.Loan;
@@ -9,11 +9,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.List;
-
 @RestController
 @RequestMapping("/loans")
-public class LoansCheckingService {
+public class LoansCheckingResource {
 
     @Autowired
     public LoanService loanService;
