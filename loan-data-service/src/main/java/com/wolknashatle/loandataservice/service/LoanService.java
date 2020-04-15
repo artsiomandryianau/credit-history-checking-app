@@ -12,6 +12,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class LoanService {
@@ -24,26 +25,24 @@ public class LoanService {
     DBCollection table;
 
     public LoanService() {
-
+        mongo = new MongoClient("localhost", 27017);
+        db = mongo.getDB("admin");
+        table = db.getCollection("loans");
     }
 
     public Loan getLoanById(Integer id){
-
+        
         return new Loan();
     }
 
 
     public List<Loan> getListOfOverdue() {
-        List<Loan> listResult = getListOfNotPayed();
-        LocalDate date = LocalDate.now();
-        listResult.stream()
+        return getListOfNotPayed().stream()
                 .filter(loan -> LocalDate.of(Integer.parseInt(loan.getDate_loan_take().substring(0,4)),
                         Integer.parseInt(loan.getDate_loan_take().substring(5,7)), Integer.parseInt(loan.getDate_loan_take().substring(8,10))).
-                        plusMonths(loan.getLoan_number_month_back()).isBefore(date))
+                        plusMonths(loan.getLoan_number_month_back()).isBefore(LocalDate.now()))
                 .sorted(Comparator.comparing(Loan::getLoan_amount))
-                .close();
-
-        return listResult;
+                .collect(Collectors.toList());
         }
 
 
@@ -52,9 +51,6 @@ public class LoanService {
 
 
     public List<Loan> getListOfNotPayed(){
-        mongo = new MongoClient("localhost", 27017);
-        db = mongo.getDB("admin");
-        table = db.getCollection("loans");
         BasicDBObject searchQuery = new BasicDBObject();
         searchQuery.put("loan_is_payed", false);
         List<Loan> list = new ArrayList<>();
