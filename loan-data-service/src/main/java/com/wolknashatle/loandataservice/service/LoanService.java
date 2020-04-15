@@ -2,10 +2,10 @@ package com.wolknashatle.loandataservice.service;
 
 
 import com.mongodb.*;
-import com.wolknashatle.loandataservice.detials.ProjectDetails;
 import com.wolknashatle.loandataservice.models.Loan;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -16,17 +16,15 @@ import java.util.stream.Collectors;
 public class LoanService {
 
     @Autowired
-    public ProjectDetails projectDetails;
+    MongoClient mongoClient;
 
-    MongoClient mongo;
+    @Autowired
     DB db;
+
+    @Autowired
     DBCollection table;
 
-    public LoanService() {
-        mongo = new MongoClient("localhost", 27017);
-        db = mongo.getDB("admin");
-        table = db.getCollection("loans");
-    }
+
 
     public Loan getLoanById(Integer id){
         BasicDBObject searchQuery = new BasicDBObject();
@@ -89,4 +87,5 @@ public class LoanService {
         }
         return list;
     }
+
 }
