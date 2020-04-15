@@ -2,7 +2,7 @@ package com.wolknashatle.loandataservice.sr;
 
 
 import com.wolknashatle.loandataservice.models.Loan;
-import com.wolknashatle.loandataservice.repositories.LoanRepository;
+import com.wolknashatle.loandataservice.service.LoanService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,10 +15,20 @@ import java.util.List;
 public class LoansCheckingService {
 
     @Autowired
-    private LoanRepository loanRepository;
+    public LoanService loanService;
 
-    @RequestMapping("/{clientId}")
-    public List<Loan> getLoansOfClient(@PathVariable("clientIf") String id) {
-        return loanRepository.findByUserIdent(Integer.parseInt(id));
+    @RequestMapping("/{loanId}")
+    public Loan getLoanById(@PathVariable("loanId") String id) {
+        return loanService.getLoanById(Integer.parseInt(id));
+    }
+
+    @RequestMapping("/overdue")
+    public List<Loan> getLoansOfClient() {
+        return loanService.getListOfOverdue();
+    }
+
+    @RequestMapping("/unpaid")
+    public List<Loan> getListOfNotPayed() {
+        return loanService.getListOfNotPayed();
     }
 }
