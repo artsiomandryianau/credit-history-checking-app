@@ -17,9 +17,14 @@ public class LoansCheckingService {
     @Autowired
     public LoanService loanService;
 
-    @RequestMapping("/{loanId}")
+    @RequestMapping("/loan/{loanId}")
     public Loan getLoanById(@PathVariable("loanId") String id) {
         return loanService.getLoanById(Integer.parseInt(id));
+    }
+
+    @RequestMapping("/client/{clientId}")
+    public List<Loan> getLoansListByClientId(@PathVariable("clientId") String id) {
+        return loanService.getLoanByClientId(Integer.parseInt(id));
     }
 
     @RequestMapping("/overdue")

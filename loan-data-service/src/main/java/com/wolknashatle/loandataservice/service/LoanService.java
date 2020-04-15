@@ -43,6 +43,25 @@ public class LoanService {
         return loan;
     }
 
+    public List<Loan> getLoanByClientId(Integer id){
+        BasicDBObject searchQuery = new BasicDBObject();
+        searchQuery.put("client_id", id);
+        DBCursor cursor = table.find(searchQuery);
+        List<Loan> list = new ArrayList<>();
+        while (cursor.hasNext()) {
+            DBObject theObj = cursor.next();
+            Loan loan = new Loan();
+            loan.setLoan_id((Integer)theObj.get("loan_id"));
+            loan.setClient_id((Integer)theObj.get("client_id"));
+            loan.setLoan_is_payed((Boolean) theObj.get("loan_is_payed"));
+            loan.setDate_loan_take((String)theObj.get("date_loan_was_taken"));
+            loan.setLoan_number_month_back((Integer)theObj.get("loan_number_month_back"));
+            loan.setLoan_amount((Integer)theObj.get("loan_amount"));
+            list.add(loan);
+        }
+        return list;
+    }
+
     public List<Loan> getListOfOverdue() {
         return getListOfNotPayed().stream()
                 .filter(loan -> LocalDate.of(Integer.parseInt(loan.getDate_loan_take().substring(0,4)),
