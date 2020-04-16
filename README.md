@@ -16,6 +16,8 @@ It uses four microservices:
 - Client data service - responsible for accessing data from relational databse (MySQL).
 
 <p align="center">
+  <a href ="##"><img alt="spring_vue" src="https://github.com/artsiomandryianau/credit-history-checking-app/tree/master/images/scheme.png"></a></p>
+<p align="center">
   <a href ="##"><img alt="spring_vue" src="https://github.com/artsiomandryianau/SpringBoot-vue/blob/master/images/newlogo.jpg?raw=true"></a></p>
 
 Technologies
