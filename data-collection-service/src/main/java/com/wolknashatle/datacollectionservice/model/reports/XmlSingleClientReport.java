@@ -11,7 +11,7 @@ import java.util.List;
 
 @XmlRootElement(name = "info")
 @XmlAccessorType(XmlAccessType.FIELD)
-public class XmlObject {
+public class XmlSingleClientReport {
 
     @XmlElement(name = "singleClientInfo")
     private List<ClientInfo> clientsInfo = null;
