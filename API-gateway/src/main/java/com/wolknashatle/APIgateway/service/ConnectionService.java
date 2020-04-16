@@ -19,7 +19,7 @@ public class ConnectionService {
     private RestTemplate restTemplate;
 
     public XmlOverdueLoansReport getOverdueReport() {
-        //Getting data from client-data-service
+        //Getting data from client-data-service!!
         String clientServiceUrl = "http://" + applicationProperties.getDataCollectionServiceHost() + ":" + applicationProperties.getDataCollectionServicePort();
         return restTemplate.getForObject(clientServiceUrl + "/getReport/overdueReport/", XmlOverdueLoansReport.class);
     }
