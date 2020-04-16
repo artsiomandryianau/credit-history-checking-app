@@ -8,8 +8,6 @@ import com.wolknashatle.datacollectionservice.model.reports.XmlUnpaidLoansReport
 import com.wolknashatle.datacollectionservice.properties.ApplicationProperties;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.ArrayList;

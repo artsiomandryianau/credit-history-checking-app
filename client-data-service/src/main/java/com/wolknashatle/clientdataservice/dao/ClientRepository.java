@@ -9,6 +9,5 @@ public interface ClientRepository extends JpaRepository<Client, Long> {
 
     Client findById(Integer id);
 
-    @Override
     List<Client> findAll();
 }
