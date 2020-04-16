@@ -1,10 +1,8 @@
 package com.wolknashatle.clientdataservice.domain;
 
-
 import lombok.*;
 
 import javax.persistence.*;
-import java.util.Date;
 
 @Entity
 @Table(name = "bank_clients")
