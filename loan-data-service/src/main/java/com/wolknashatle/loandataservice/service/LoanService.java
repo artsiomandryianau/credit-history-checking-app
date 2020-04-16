@@ -57,7 +57,7 @@ public class LoanService {
     }
 
     public List<Loan> getListOfOverdue() {
-        return getListOfNotPayed().stream()
+        return getListOfNotPaid().stream()
                 .filter(loan -> LocalDate.of(Integer.parseInt(loan.getDate_loan_take().substring(0,4)),
                         Integer.parseInt(loan.getDate_loan_take().substring(5,7)), Integer.parseInt(loan.getDate_loan_take().substring(8,10))).
                         plusMonths(loan.getLoan_number_month_back()).isBefore(LocalDate.now()))
@@ -65,7 +65,7 @@ public class LoanService {
                 .collect(Collectors.toList());
         }
 
-    public List<Loan> getListOfNotPayed(){
+    public List<Loan> getListOfNotPaid(){
         BasicDBObject searchQuery = new BasicDBObject();
         searchQuery.put("loan_is_payed", false);
         List<Loan> list = new ArrayList<>();

@@ -33,6 +33,7 @@ public class LoansCheckingResource {
 
     @RequestMapping("/unpaid")
     public LoanList getListOfNotPayed() {
-        return new LoanList(loanService.getListOfNotPayed());
+        return new LoanList(loanService.getListOfNotPaid());
     }
+
 }

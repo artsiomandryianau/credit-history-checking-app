@@ -1,33 +1,35 @@
 package com.wolknashatle.datacollectionservice.model;
 
+
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
-@XmlRootElement(name = "client")
+@XmlRootElement(name = "unpaidLoanInfo")
 @XmlAccessorType(XmlAccessType.FIELD)
-public class ClientInfo {
+public class UnpaidLoanInfo {
 
+    @XmlElement(name = "loanInfo")
+    private Loan loan;
     @XmlElement(name = "clientInfo")
     private Client client;
 
-    private LoanList loanList;
+    public UnpaidLoanInfo() {
 
-    public ClientInfo() {
     }
 
-    public ClientInfo(Client client, LoanList loanList) {
+    public UnpaidLoanInfo(Loan loan, Client client) {
+        this.loan = loan;
         this.client = client;
-        this.loanList = loanList;
     }
 
-    public LoanList getLoanList() {
-        return loanList;
+    public Loan getLoan() {
+        return loan;
     }
 
-    public void setLoanList(LoanList loanList) {
-        this.loanList = loanList;
+    public void setLoan(Loan loan) {
+        this.loan = loan;
     }
 
     public Client getClient() {
@@ -37,6 +39,4 @@ public class ClientInfo {
     public void setClient(Client client) {
         this.client = client;
     }
-
-
 }

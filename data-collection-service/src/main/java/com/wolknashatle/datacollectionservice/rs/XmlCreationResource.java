@@ -1,11 +1,12 @@
 package com.wolknashatle.datacollectionservice.rs;
 
 
-import com.wolknashatle.datacollectionservice.model.Client;
-import com.wolknashatle.datacollectionservice.model.ClientInfo;
-import com.wolknashatle.datacollectionservice.model.LoanList;
-import com.wolknashatle.datacollectionservice.model.reports.XmlObject;
+import com.wolknashatle.datacollectionservice.model.*;
+import com.wolknashatle.datacollectionservice.model.reports.XmlOverdueLoansReport;
+import com.wolknashatle.datacollectionservice.model.reports.XmlSingleClientReport;
+import com.wolknashatle.datacollectionservice.model.reports.XmlUnpaidLoansReport;
 import com.wolknashatle.datacollectionservice.properties.ApplicationProperties;
+import com.wolknashatle.datacollectionservice.service.ReportService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,27 +21,24 @@ import java.util.List;
 public class XmlCreationResource {
 
     @Autowired
-    private ApplicationProperties applicationProperties;
-
-    @Autowired
-    RestTemplate restTemplate;
+    private ReportService reportService;
 
     @RequestMapping("/clientsLoans/{clientId}")
-    public XmlObject getClientLoansReport(@PathVariable("clientId") String clientId){
-        //Getting data from client-data-service
-        String clientServiceUrl = "http://" + applicationProperties.getClientDataServicehost() + ":" + applicationProperties.getClientDataServicePort();
-        Client client = restTemplate.getForObject(clientServiceUrl + "/client/" + clientId, Client.class);
-        //Getting data from loan-data-service
-        String loanServiceUrl = "http://" + applicationProperties.getLoanDataServiceHost() + ":" + applicationProperties.getLoanDataServicePort();
-        LoanList loanList = restTemplate.getForObject(loanServiceUrl +"/loans/client/" + clientId, LoanList.class);
-        //Saving data into one object
-        ClientInfo clientInfo = new ClientInfo(client, loanList);
-        XmlObject xmlObject = new XmlObject();
-        List<ClientInfo> clientInfoList = new ArrayList<>();
-        clientInfoList.add(clientInfo);
-        xmlObject.setClientsInfo(clientInfoList);
-        return xmlObject;
+    public XmlSingleClientReport getClientLoansReport(@PathVariable("clientId") String clientId){
+        return reportService.getClientLoansReport(clientId);
     }
+
+    @RequestMapping("/overdueReport")
+    public XmlOverdueLoansReport getOverdueReport(){
+        return reportService.getOverdueReport();
+    }
+
+    @RequestMapping("/unpaid")
+    public XmlUnpaidLoansReport getUnpaidReport() {
+        return reportService.getUnpaidReport();
+    }
+
+
 
 
 }
