@@ -21,7 +21,7 @@ public class XmlCreationResource {
     public XmlSingleClientReport getClientLoansReport(@PathVariable("clientId") String clientId){
         return reportService.getClientLoansReport(clientId);
     }
-    
+
     @RequestMapping("/overdueReport")
     public XmlOverdueLoansReport getOverdueReport(){
         return reportService.getOverdueReport();
