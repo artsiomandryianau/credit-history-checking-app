@@ -9,11 +9,10 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import java.util.List;
 
-@XmlRootElement(name = "unpaidLoans")
-@XmlAccessorType(XmlAccessType.FIELD)
+
 public class XmlUnpaidLoansReport {
 
-    @XmlElement(name = "singleUnpaidLoanInfo")
+
     private List<OverdueLoanInfo> overdueLoanInfos;
 
     public XmlUnpaidLoansReport(List<OverdueLoanInfo> overdueLoanInfos) {

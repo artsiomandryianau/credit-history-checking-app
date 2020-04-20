@@ -8,11 +8,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-@XmlRootElement(name = "loans")
-@XmlAccessorType(XmlAccessType.FIELD)
+
+
 public class LoanList {
 
-    @XmlElement(name = "loan")
+    )
     private List<Loan> list = new ArrayList<>();
 
     public LoanList(List<Loan> list) {

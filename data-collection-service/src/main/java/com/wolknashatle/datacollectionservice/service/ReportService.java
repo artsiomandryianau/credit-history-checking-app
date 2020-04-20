@@ -39,6 +39,22 @@ public class ReportService {
         return xmlSingleClientReport;
     }
 
+    public XmlSingleClientReport getLoanReport(String loanId) {
+        //Getting data from client-data-service
+        String clientServiceUrl = "http://" + applicationProperties.getClientDataServicehost() + ":" + applicationProperties.getClientDataServicePort();
+        Client client = restTemplate.getForObject(clientServiceUrl + "/client/" + clientId, Client.class);
+        //Getting data from loan-data-service
+        String loanServiceUrl = "http://" + applicationProperties.getLoanDataServiceHost() + ":" + applicationProperties.getLoanDataServicePort();
+        LoanList loanList = restTemplate.getForObject(loanServiceUrl +"/loans/client/" + clientId, LoanList.class);
+        //Saving data into one object
+        ClientInfo clientInfo = new ClientInfo(client, loanList);
+        XmlSingleClientReport xmlSingleClientReport = new XmlSingleClientReport();
+        List<ClientInfo> clientInfoList = new ArrayList<>();
+        clientInfoList.add(clientInfo);
+        xmlSingleClientReport.setClientsInfo(clientInfoList);
+        return xmlSingleClientReport;
+    }
+
 
     public XmlOverdueLoansReport getOverdueReport() {
         String clientServiceUrl = "http://" + applicationProperties.getClientDataServicehost() + ":" + applicationProperties.getClientDataServicePort();
