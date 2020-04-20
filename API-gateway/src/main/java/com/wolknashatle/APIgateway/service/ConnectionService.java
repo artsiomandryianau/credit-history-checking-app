@@ -1,9 +1,10 @@
 package com.wolknashatle.APIgateway.service;
 
 
-import com.wolknashatle.APIgateway.model.reports.XmlOverdueLoansReport;
-import com.wolknashatle.APIgateway.model.reports.XmlSingleClientReport;
-import com.wolknashatle.APIgateway.model.reports.XmlUnpaidLoansReport;
+import com.wolknashatle.APIgateway.model.LoanInfo;
+import com.wolknashatle.APIgateway.model.reports.OverdueLoansReport;
+import com.wolknashatle.APIgateway.model.reports.SingleClientReport;
+import com.wolknashatle.APIgateway.model.reports.UnpaidLoansReport;
 import com.wolknashatle.APIgateway.properties.ApplicationProperties;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,21 +19,27 @@ public class ConnectionService {
     @Autowired
     private RestTemplate restTemplate;
 
-    public XmlOverdueLoansReport getOverdueReport() {
+    public OverdueLoansReport getOverdueReport() {
         //Getting data from client-data-service!!
         String clientServiceUrl = "http://" + applicationProperties.getDataCollectionServiceHost() + ":" + applicationProperties.getDataCollectionServicePort();
-        return restTemplate.getForObject(clientServiceUrl + "/getReport/overdueReport/", XmlOverdueLoansReport.class);
+        return restTemplate.getForObject(clientServiceUrl + "/getReport/overdueReport/", OverdueLoansReport.class);
     }
 
-    public XmlSingleClientReport getSingleClientReport(String clientId) {
-        //Getting data from client-data-service
+    public LoanInfo getLoanReport(String loanId) {
+        //Getting data from client-data-service!!
         String clientServiceUrl = "http://" + applicationProperties.getDataCollectionServiceHost() + ":" + applicationProperties.getDataCollectionServicePort();
-        return restTemplate.getForObject(clientServiceUrl + "/getReport/clientsLoans/" + clientId, XmlSingleClientReport.class);
+        return restTemplate.getForObject(clientServiceUrl + "/getReport/loanReport/" + loanId, LoanInfo.class);
     }
 
-    public XmlUnpaidLoansReport getUnpaidReport() {
+    public SingleClientReport getSingleClientReport(String clientId) {
         //Getting data from client-data-service
         String clientServiceUrl = "http://" + applicationProperties.getDataCollectionServiceHost() + ":" + applicationProperties.getDataCollectionServicePort();
-        return restTemplate.getForObject(clientServiceUrl + "/getReport/unpaid", XmlUnpaidLoansReport.class);
+        return restTemplate.getForObject(clientServiceUrl + "/getReport/clientsLoans/" + clientId, SingleClientReport.class);
+    }
+
+    public UnpaidLoansReport getUnpaidReport() {
+        //Getting data from client-data-service
+        String clientServiceUrl = "http://" + applicationProperties.getDataCollectionServiceHost() + ":" + applicationProperties.getDataCollectionServicePort();
+        return restTemplate.getForObject(clientServiceUrl + "/getReport/unpaid", UnpaidLoansReport.class);
     }
 }
