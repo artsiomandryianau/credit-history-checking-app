@@ -1,9 +1,9 @@
 package com.wolknashatle.datacollectionservice.rs;
 
 
-import com.wolknashatle.datacollectionservice.model.reports.XmlOverdueLoansReport;
-import com.wolknashatle.datacollectionservice.model.reports.XmlSingleClientReport;
-import com.wolknashatle.datacollectionservice.model.reports.XmlUnpaidLoansReport;
+import com.wolknashatle.datacollectionservice.model.reports.OverdueLoansReport;
+import com.wolknashatle.datacollectionservice.model.reports.SingleClientReport;
+import com.wolknashatle.datacollectionservice.model.reports.UnpaidLoansReport;
 import com.wolknashatle.datacollectionservice.service.ReportService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -18,17 +18,17 @@ public class XmlCreationResource {
     private ReportService reportService;
 
     @RequestMapping("/clientsLoans/{clientId}")
-    public XmlSingleClientReport getClientLoansReport(@PathVariable("clientId") String clientId){
+    public SingleClientReport getClientLoansReport(@PathVariable("clientId") String clientId){
         return reportService.getClientLoansReport(clientId);
     }
 
     @RequestMapping("/overdueReport")
-    public XmlOverdueLoansReport getOverdueReport(){
+    public OverdueLoansReport getOverdueReport(){
         return reportService.getOverdueReport();
     }
 
     @RequestMapping("/unpaid")
-    public XmlUnpaidLoansReport getUnpaidReport() {
+    public UnpaidLoansReport getUnpaidReport() {
         return reportService.getUnpaidReport();
     }
 

@@ -3,23 +3,19 @@ package com.wolknashatle.datacollectionservice.model.reports;
 
 import com.wolknashatle.datacollectionservice.model.OverdueLoanInfo;
 
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlRootElement;
 import java.util.List;
 
 
-public class XmlOverdueLoansReport {
+public class UnpaidLoansReport {
 
-    )
+
     private List<OverdueLoanInfo> overdueLoanInfos;
 
-    public XmlOverdueLoansReport(List<OverdueLoanInfo> overdueLoanInfos) {
+    public UnpaidLoansReport(List<OverdueLoanInfo> overdueLoanInfos) {
         this.overdueLoanInfos = overdueLoanInfos;
     }
 
-    public XmlOverdueLoansReport() {
+    public UnpaidLoansReport() {
 
     }
 

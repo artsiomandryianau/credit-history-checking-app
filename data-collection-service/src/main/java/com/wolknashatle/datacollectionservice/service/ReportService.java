@@ -2,9 +2,9 @@ package com.wolknashatle.datacollectionservice.service;
 
 
 import com.wolknashatle.datacollectionservice.model.*;
-import com.wolknashatle.datacollectionservice.model.reports.XmlOverdueLoansReport;
-import com.wolknashatle.datacollectionservice.model.reports.XmlSingleClientReport;
-import com.wolknashatle.datacollectionservice.model.reports.XmlUnpaidLoansReport;
+import com.wolknashatle.datacollectionservice.model.reports.OverdueLoansReport;
+import com.wolknashatle.datacollectionservice.model.reports.SingleClientReport;
+import com.wolknashatle.datacollectionservice.model.reports.UnpaidLoansReport;
 import com.wolknashatle.datacollectionservice.properties.ApplicationProperties;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -23,7 +23,7 @@ public class ReportService {
     RestTemplate restTemplate;
 
 
-    public XmlSingleClientReport getClientLoansReport(String clientId) {
+    public SingleClientReport getClientLoansReport(String clientId) {
         //Getting data from client-data-service
         String clientServiceUrl = "http://" + applicationProperties.getClientDataServicehost() + ":" + applicationProperties.getClientDataServicePort();
         Client client = restTemplate.getForObject(clientServiceUrl + "/client/" + clientId, Client.class);
@@ -32,14 +32,14 @@ public class ReportService {
         LoanList loanList = restTemplate.getForObject(loanServiceUrl +"/loans/client/" + clientId, LoanList.class);
         //Saving data into one object
         ClientInfo clientInfo = new ClientInfo(client, loanList);
-        XmlSingleClientReport xmlSingleClientReport = new XmlSingleClientReport();
+        SingleClientReport singleClientReport = new SingleClientReport();
         List<ClientInfo> clientInfoList = new ArrayList<>();
         clientInfoList.add(clientInfo);
-        xmlSingleClientReport.setClientsInfo(clientInfoList);
-        return xmlSingleClientReport;
+        singleClientReport.setClientsInfo(clientInfoList);
+        return singleClientReport;
     }
 
-    public XmlSingleClientReport getLoanReport(String loanId) {
+    public SingleClientReport getLoanReport(String loanId) {
         //Getting data from client-data-service
         String clientServiceUrl = "http://" + applicationProperties.getClientDataServicehost() + ":" + applicationProperties.getClientDataServicePort();
         Client client = restTemplate.getForObject(clientServiceUrl + "/client/" + clientId, Client.class);
@@ -48,20 +48,20 @@ public class ReportService {
         LoanList loanList = restTemplate.getForObject(loanServiceUrl +"/loans/client/" + clientId, LoanList.class);
         //Saving data into one object
         ClientInfo clientInfo = new ClientInfo(client, loanList);
-        XmlSingleClientReport xmlSingleClientReport = new XmlSingleClientReport();
+        SingleClientReport singleClientReport = new SingleClientReport();
         List<ClientInfo> clientInfoList = new ArrayList<>();
         clientInfoList.add(clientInfo);
-        xmlSingleClientReport.setClientsInfo(clientInfoList);
-        return xmlSingleClientReport;
+        singleClientReport.setClientsInfo(clientInfoList);
+        return singleClientReport;
     }
 
 
-    public XmlOverdueLoansReport getOverdueReport() {
+    public OverdueLoansReport getOverdueReport() {
         String clientServiceUrl = "http://" + applicationProperties.getClientDataServicehost() + ":" + applicationProperties.getClientDataServicePort();
         //Getting data from loan-data-service
         String loanServiceUrl = "http://" + applicationProperties.getLoanDataServiceHost() + ":" + applicationProperties.getLoanDataServicePort();
         LoanList loanList = restTemplate.getForObject(loanServiceUrl +"/loans/overdue", LoanList.class);
-        XmlOverdueLoansReport report = new XmlOverdueLoansReport(new ArrayList<>());
+        OverdueLoansReport report = new OverdueLoansReport(new ArrayList<>());
         for (Loan loan: loanList.getList()) {
             //Getting data from client-data-service
             Client client = restTemplate.getForObject(clientServiceUrl + "/client/" + loan.getClient_id().toString(), Client.class);
@@ -71,12 +71,12 @@ public class ReportService {
         return report;
     }
 
-    public XmlUnpaidLoansReport getUnpaidReport() {
+    public UnpaidLoansReport getUnpaidReport() {
         String clientServiceUrl = "http://" + applicationProperties.getClientDataServicehost() + ":" + applicationProperties.getClientDataServicePort();
         //Getting data from loan-data-service
         String loanServiceUrl = "http://" + applicationProperties.getLoanDataServiceHost() + ":" + applicationProperties.getLoanDataServicePort();
         LoanList loanList = restTemplate.getForObject(loanServiceUrl +"/loans/unpaid", LoanList.class);
-        XmlUnpaidLoansReport report = new XmlUnpaidLoansReport(new ArrayList<>());
+        UnpaidLoansReport report = new UnpaidLoansReport(new ArrayList<>());
         for (Loan loan: loanList.getList()) {
             //Getting data from client-data-service
             Client client = restTemplate.getForObject(clientServiceUrl + "/client/" + loan.getClient_id().toString(), Client.class);

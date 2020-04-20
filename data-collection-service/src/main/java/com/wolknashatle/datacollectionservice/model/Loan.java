@@ -1,10 +1,6 @@
 package com.wolknashatle.datacollectionservice.model;
 
 
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlRootElement;
-
 public class Loan {
 
     private Integer loan_id;
