@@ -1,4 +1,4 @@
-package com.wolknashatle.datacollectionservice.model;
+package com.wolknashatle.APIgateway.model;
 
 
 public class LoanInfo {

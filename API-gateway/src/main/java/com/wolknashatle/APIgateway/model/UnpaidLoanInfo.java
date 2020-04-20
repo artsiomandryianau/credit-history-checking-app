@@ -6,13 +6,12 @@ import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
-@XmlRootElement(name = "unpaidLoanInfo")
-@XmlAccessorType(XmlAccessType.FIELD)
+
 public class UnpaidLoanInfo {
 
-    @XmlElement(name = "loanInfo")
+
     private Loan loan;
-    @XmlElement(name = "clientInfo")
+
     private Client client;
 
     public UnpaidLoanInfo() {

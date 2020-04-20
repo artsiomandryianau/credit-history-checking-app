@@ -1,6 +1,7 @@
 package com.wolknashatle.datacollectionservice.rs;
 
 
+import com.wolknashatle.datacollectionservice.model.LoanInfo;
 import com.wolknashatle.datacollectionservice.model.reports.OverdueLoansReport;
 import com.wolknashatle.datacollectionservice.model.reports.SingleClientReport;
 import com.wolknashatle.datacollectionservice.model.reports.UnpaidLoansReport;
@@ -20,6 +21,11 @@ public class XmlCreationResource {
     @RequestMapping("/clientsLoans/{clientId}")
     public SingleClientReport getClientLoansReport(@PathVariable("clientId") String clientId){
         return reportService.getClientLoansReport(clientId);
+    }
+
+    @RequestMapping("/loanReport/{loanId}")
+    public LoanInfo getLoanReport(@PathVariable("loanId") String loanId){
+        return reportService.getLoanReport(loanId);
     }
 
     @RequestMapping("/overdueReport")

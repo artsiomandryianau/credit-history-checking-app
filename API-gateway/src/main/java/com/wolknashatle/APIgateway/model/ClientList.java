@@ -7,8 +7,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-@XmlRootElement(name = "clients")
-@XmlAccessorType(XmlAccessType.FIELD)
 public class ClientList {
 
     private List<Client> clientList = new ArrayList<Client>();

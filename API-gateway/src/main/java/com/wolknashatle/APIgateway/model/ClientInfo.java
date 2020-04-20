@@ -5,11 +5,9 @@ import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
-@XmlRootElement(name = "client")
-@XmlAccessorType(XmlAccessType.FIELD)
 public class ClientInfo {
 
-    @XmlElement(name = "clientInfo")
+
     private Client client;
 
     private LoanList loanList;
