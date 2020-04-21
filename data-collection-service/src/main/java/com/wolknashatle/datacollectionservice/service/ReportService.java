@@ -3,7 +3,6 @@ package com.wolknashatle.datacollectionservice.service;
 
 import com.wolknashatle.datacollectionservice.model.*;
 import com.wolknashatle.datacollectionservice.model.reports.OverdueLoansReport;
-import com.wolknashatle.datacollectionservice.model.reports.SingleClientReport;
 import com.wolknashatle.datacollectionservice.model.reports.UnpaidLoansReport;
 import com.wolknashatle.datacollectionservice.properties.ApplicationProperties;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,7 +10,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.ArrayList;
-import java.util.List;
 
 @Service
 public class ReportService {

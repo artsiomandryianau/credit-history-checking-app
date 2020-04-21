@@ -3,7 +3,6 @@ package com.wolknashatle.APIgateway.service;
 import com.wolknashatle.APIgateway.model.ClientInfo;
 import com.wolknashatle.APIgateway.model.LoanInfo;
 import com.wolknashatle.APIgateway.model.reports.OverdueLoansReport;
-import com.wolknashatle.APIgateway.model.reports.SingleClientReport;
 import com.wolknashatle.APIgateway.model.reports.UnpaidLoansReport;
 import com.wolknashatle.APIgateway.properties.ApplicationProperties;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,7 +46,9 @@ public class ConnectionService {
         try {
             //Getting data from client-data-service
             String clientServiceUrl = "http://" + applicationProperties.getDataCollectionServiceHost() + ":" + applicationProperties.getDataCollectionServicePort();
-            return restTemplate.getForObject(clientServiceUrl + "/getReport/clientsLoans/" + clientId, ClientInfo.class);
+            ClientInfo clientInfo = restTemplate.getForObject(clientServiceUrl + "/getReport/clientsLoans/" + clientId, ClientInfo.class);
+            if (clientInfo == null) { throw  new RuntimeException(); }
+            else return clientInfo;
         } catch (RuntimeException re) {
             throw new RuntimeException("error", re);
         }

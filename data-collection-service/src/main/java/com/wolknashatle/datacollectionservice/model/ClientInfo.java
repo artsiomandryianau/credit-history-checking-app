@@ -1,8 +1,5 @@
 package com.wolknashatle.datacollectionservice.model;
 
-import javax.xml.bind.annotation.XmlElement;
-
-
 public class ClientInfo {
 
 

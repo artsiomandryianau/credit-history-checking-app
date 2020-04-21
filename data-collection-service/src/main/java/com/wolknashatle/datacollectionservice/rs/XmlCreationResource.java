@@ -4,7 +4,6 @@ package com.wolknashatle.datacollectionservice.rs;
 import com.wolknashatle.datacollectionservice.model.ClientInfo;
 import com.wolknashatle.datacollectionservice.model.LoanInfo;
 import com.wolknashatle.datacollectionservice.model.reports.OverdueLoansReport;
-import com.wolknashatle.datacollectionservice.model.reports.SingleClientReport;
 import com.wolknashatle.datacollectionservice.model.reports.UnpaidLoansReport;
 import com.wolknashatle.datacollectionservice.service.ReportService;
 import org.springframework.beans.factory.annotation.Autowired;
