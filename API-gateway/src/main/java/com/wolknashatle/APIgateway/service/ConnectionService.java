@@ -23,9 +23,13 @@ public class ConnectionService {
     private RestTemplate restTemplate;
 
     public OverdueLoansReport getOverdueReport() {
-        //Getting data from client-data-service!!
-        String clientServiceUrl = "http://" + applicationProperties.getDataCollectionServiceHost() + ":" + applicationProperties.getDataCollectionServicePort();
-        return restTemplate.getForObject(clientServiceUrl + "/getReport/overdueReport/", OverdueLoansReport.class);
+        try {
+            //Getting data from client-data-service!!
+            String clientServiceUrl = "http://" + applicationProperties.getDataCollectionServiceHost() + ":" + applicationProperties.getDataCollectionServicePort();
+            return restTemplate.getForObject(clientServiceUrl + "/getReport/overdueReport/", OverdueLoansReport.class);
+        } catch (RuntimeException re) {
+            throw new ConstraintViolationException("error", Collections.emptySet());
+        }
     }
 
     public LoanInfo getLoanReport(String loanId) {
@@ -39,14 +43,22 @@ public class ConnectionService {
     }
 
     public SingleClientReport getSingleClientReport(String clientId) {
-        //Getting data from client-data-service
-        String clientServiceUrl = "http://" + applicationProperties.getDataCollectionServiceHost() + ":" + applicationProperties.getDataCollectionServicePort();
-        return restTemplate.getForObject(clientServiceUrl + "/getReport/clientsLoans/" + clientId, SingleClientReport.class);
+        try {
+            //Getting data from client-data-service
+            String clientServiceUrl = "http://" + applicationProperties.getDataCollectionServiceHost() + ":" + applicationProperties.getDataCollectionServicePort();
+            return restTemplate.getForObject(clientServiceUrl + "/getReport/clientsLoans/" + clientId, SingleClientReport.class);
+        } catch (RuntimeException re) {
+            throw new ConstraintViolationException("error", Collections.emptySet());
+        }
     }
 
     public UnpaidLoansReport getUnpaidReport() {
-        //Getting data from client-data-service
-        String clientServiceUrl = "http://" + applicationProperties.getDataCollectionServiceHost() + ":" + applicationProperties.getDataCollectionServicePort();
-        return restTemplate.getForObject(clientServiceUrl + "/getReport/unpaid", UnpaidLoansReport.class);
+        try {
+            //Getting data from client-data-service
+            String clientServiceUrl = "http://" + applicationProperties.getDataCollectionServiceHost() + ":" + applicationProperties.getDataCollectionServicePort();
+            return restTemplate.getForObject(clientServiceUrl + "/getReport/unpaid", UnpaidLoansReport.class);
+        } catch (RuntimeException re) {
+            throw new ConstraintViolationException("error", Collections.emptySet());
+        }
     }
 }

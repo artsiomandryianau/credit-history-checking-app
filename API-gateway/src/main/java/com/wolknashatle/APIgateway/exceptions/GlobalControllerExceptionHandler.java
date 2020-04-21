@@ -15,29 +15,22 @@ import java.util.Map;
 public class GlobalControllerExceptionHandler {
 
     @ExceptionHandler(value = { ConstraintViolationException.class })
-    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    @ResponseStatus(HttpStatus.NOT_FOUND)
     public ApiErrorResponce constraintViolationException(ConstraintViolationException ex) {
         Map<String, String> map = new HashMap<>();
-        map.put("errorCode", "400");
-        map.put("errorMessage", "BAD REQUEST");
-        return new ApiErrorResponce("Error", ex.toString(), map, new String[]{"errorCode", "errorMessage"} );
+        map.put("errorCode", "404");
+        map.put("errorMessage", "NOT FOUND");
+        return new ApiErrorResponce("Error", ex.toString(), map, new String[]{"101", "data collection service is not available"} );
     }
 
     @ExceptionHandler(value = { NoHandlerFoundException.class })
     @ResponseStatus(HttpStatus.NOT_FOUND)
     public ApiErrorResponce noHandlerFoundException(Exception ex) {
         Map<String, String> map = new HashMap<>();
-        map.put("errorCode", "404");
-        map.put("errorMessage", "NOT FOUND");
+        map.put("errorCode", "400");
+        map.put("errorMessage", "BAD REQUEST");
         return new ApiErrorResponce("Error", ex.toString(), map, new String[]{"errorCode", "errorMessage"} );
     }
 
-    @ExceptionHandler(value = { Exception.class })
-    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
-    public ApiErrorResponce unknownException(Exception ex) {
-        Map<String, String> map = new HashMap<>();
-        map.put("errorCode", "500");
-        map.put("errorMessage", "INTERNAL_SERVER_ERROR");
-        return new ApiErrorResponce("Error", ex.toString(), map, new String[]{"errorCode", "errorMessage"} );
-    }
+
 }
