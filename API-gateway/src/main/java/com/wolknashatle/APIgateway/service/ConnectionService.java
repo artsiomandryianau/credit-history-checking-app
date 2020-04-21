@@ -1,6 +1,5 @@
 package com.wolknashatle.APIgateway.service;
 
-
 import com.wolknashatle.APIgateway.model.LoanInfo;
 import com.wolknashatle.APIgateway.model.reports.OverdueLoansReport;
 import com.wolknashatle.APIgateway.model.reports.SingleClientReport;
@@ -26,9 +25,11 @@ public class ConnectionService {
     }
 
     public LoanInfo getLoanReport(String loanId) {
-        //Getting data from client-data-service!!
-        String clientServiceUrl = "http://" + applicationProperties.getDataCollectionServiceHost() + ":" + applicationProperties.getDataCollectionServicePort();
-        return restTemplate.getForObject(clientServiceUrl + "/getReport/loanReport/" + loanId, LoanInfo.class);
+
+            //Getting data from client-data-service!!
+            String clientServiceUrl = "http://" + applicationProperties.getDataCollectionServiceHost() + ":" + applicationProperties.getDataCollectionServicePort();
+            return restTemplate.getForObject(clientServiceUrl + "/getReport/loanReport/" + loanId, LoanInfo.class);
+
     }
 
     public SingleClientReport getSingleClientReport(String clientId) {

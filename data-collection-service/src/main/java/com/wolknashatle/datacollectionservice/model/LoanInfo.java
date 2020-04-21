@@ -29,6 +29,23 @@ public class LoanInfo {
         this.address = client.getAddress();
     }
 
+    public LoanInfo() {
+    }
+
+    public LoanInfo(Integer loan_id, boolean loan_is_payed, String date_loan_take, Integer loan_number_month_back, Integer loan_amount, String firstName, String lastName, String dateOfBirth, String email, String phoneNumber, String address) {
+        this.loan_id = loan_id;
+        this.loan_is_payed = loan_is_payed;
+        this.date_loan_take = date_loan_take;
+        this.loan_number_month_back = loan_number_month_back;
+        this.loan_amount = loan_amount;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.dateOfBirth = dateOfBirth;
+        this.email = email;
+        this.phoneNumber = phoneNumber;
+        this.address = address;
+    }
+
     public Integer getLoan_id() {
         return loan_id;
     }

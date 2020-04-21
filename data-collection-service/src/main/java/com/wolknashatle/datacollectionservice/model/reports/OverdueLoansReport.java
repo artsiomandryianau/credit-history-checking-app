@@ -1,7 +1,7 @@
 package com.wolknashatle.datacollectionservice.model.reports;
 
 
-import com.wolknashatle.datacollectionservice.model.OverdueLoanInfo;
+import com.wolknashatle.datacollectionservice.model.LoanInfo;
 
 import java.util.List;
 
@@ -9,9 +9,9 @@ import java.util.List;
 public class OverdueLoansReport {
 
 
-    private List<OverdueLoanInfo> overdueLoanInfos;
+    private List<LoanInfo> overdueLoanInfos;
 
-    public OverdueLoansReport(List<OverdueLoanInfo> overdueLoanInfos) {
+    public OverdueLoansReport(List<LoanInfo> overdueLoanInfos) {
         this.overdueLoanInfos = overdueLoanInfos;
     }
 
@@ -19,11 +19,11 @@ public class OverdueLoansReport {
 
     }
 
-    public List<OverdueLoanInfo> getOverdueLoanInfos() {
+    public List<LoanInfo> getOverdueLoanInfos() {
         return overdueLoanInfos;
     }
 
-    public void setOverdueLoanInfos(List<OverdueLoanInfo> overdueLoanInfos) {
+    public void setOverdueLoanInfos(List<LoanInfo> overdueLoanInfos) {
         this.overdueLoanInfos = overdueLoanInfos;
     }
 }

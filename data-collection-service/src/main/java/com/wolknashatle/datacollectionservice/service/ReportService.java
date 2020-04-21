@@ -59,7 +59,7 @@ public class ReportService {
         for (Loan loan: loanList.getList()) {
             //Getting data from client-data-service
             Client client = restTemplate.getForObject(clientServiceUrl + "/client/" + loan.getClient_id().toString(), Client.class);
-            OverdueLoanInfo overdueLoanInfo = new OverdueLoanInfo(loan, client);
+            LoanInfo overdueLoanInfo = new LoanInfo(client, loan);
             report.getOverdueLoanInfos().add(overdueLoanInfo);
         }
         return report;
@@ -74,7 +74,7 @@ public class ReportService {
         for (Loan loan: loanList.getList()) {
             //Getting data from client-data-service
             Client client = restTemplate.getForObject(clientServiceUrl + "/client/" + loan.getClient_id().toString(), Client.class);
-            OverdueLoanInfo overdueLoanInfo = new OverdueLoanInfo(loan, client);
+            LoanInfo overdueLoanInfo = new LoanInfo(client, loan);
             report.getOverdueLoanInfos().add(overdueLoanInfo);
         }
         return report;
