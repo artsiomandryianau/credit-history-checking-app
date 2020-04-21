@@ -11,6 +11,10 @@ public class SingleClientReport {
 
     private List<ClientInfo> clientsInfo = null;
 
+    public SingleClientReport(List<ClientInfo> clientsInfo) {
+        this.clientsInfo = clientsInfo;
+    }
+
     public List<ClientInfo> getClientsInfo() {
         return clientsInfo;
     }

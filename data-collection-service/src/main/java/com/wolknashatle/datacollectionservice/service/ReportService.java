@@ -23,20 +23,16 @@ public class ReportService {
     RestTemplate restTemplate;
 
 
-    public SingleClientReport getClientLoansReport(String clientId) {
+    public ClientInfo getClientLoansReport(String clientId) {
         //Getting data from client-data-service
         String clientServiceUrl = "http://" + applicationProperties.getClientDataServicehost() + ":" + applicationProperties.getClientDataServicePort();
         Client client = restTemplate.getForObject(clientServiceUrl + "/client/" + clientId, Client.class);
+        if(client == null) return null;
         //Getting data from loan-data-service
         String loanServiceUrl = "http://" + applicationProperties.getLoanDataServiceHost() + ":" + applicationProperties.getLoanDataServicePort();
         LoanList loanList = restTemplate.getForObject(loanServiceUrl +"/loans/client/" + clientId, LoanList.class);
         //Saving data into one object
-        ClientInfo clientInfo = new ClientInfo(client, loanList);
-        SingleClientReport singleClientReport = new SingleClientReport();
-        List<ClientInfo> clientInfoList = new ArrayList<>();
-        clientInfoList.add(clientInfo);
-        singleClientReport.setClientsInfo(clientInfoList);
-        return singleClientReport;
+        return new ClientInfo(client, loanList);
     }
 
     public LoanInfo getLoanReport(String loanId) {

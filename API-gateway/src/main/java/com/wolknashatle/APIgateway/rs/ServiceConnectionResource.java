@@ -1,5 +1,6 @@
 package com.wolknashatle.APIgateway.rs;
 
+import com.wolknashatle.APIgateway.model.ClientInfo;
 import com.wolknashatle.APIgateway.model.LoanInfo;
 import com.wolknashatle.APIgateway.model.reports.OverdueLoansReport;
 import com.wolknashatle.APIgateway.model.reports.SingleClientReport;
@@ -25,7 +26,7 @@ public class ServiceConnectionResource {
     }
 
     @RequestMapping("/client-report/{clientId}")
-    public SingleClientReport getSingleClientReport(@PathVariable("clientId") String clientId) {
+    public ClientInfo getSingleClientReport(@PathVariable("clientId") String clientId) {
                 return connectionService.getSingleClientReport(clientId);
     }
 

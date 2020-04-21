@@ -5,7 +5,7 @@ import javax.xml.bind.annotation.XmlElement;
 
 public class ClientInfo {
 
-    @XmlElement(name = "clientInfo")
+
     private Client client;
 
     private LoanList loanList;

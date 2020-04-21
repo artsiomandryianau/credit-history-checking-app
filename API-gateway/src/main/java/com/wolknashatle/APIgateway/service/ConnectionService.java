@@ -1,5 +1,6 @@
 package com.wolknashatle.APIgateway.service;
 
+import com.wolknashatle.APIgateway.model.ClientInfo;
 import com.wolknashatle.APIgateway.model.LoanInfo;
 import com.wolknashatle.APIgateway.model.reports.OverdueLoansReport;
 import com.wolknashatle.APIgateway.model.reports.SingleClientReport;
@@ -38,17 +39,17 @@ public class ConnectionService {
             String clientServiceUrl = "http://" + applicationProperties.getDataCollectionServiceHost() + ":" + applicationProperties.getDataCollectionServicePort();
             return restTemplate.getForObject(clientServiceUrl + "/getReport/loanReport/" + loanId, LoanInfo.class);
         } catch (RuntimeException re) {
-            throw new ConstraintViolationException("error", Collections.emptySet());
+            throw new RuntimeException("error", re);
         }
     }
 
-    public SingleClientReport getSingleClientReport(String clientId) {
+    public ClientInfo getSingleClientReport(String clientId) {
         try {
             //Getting data from client-data-service
             String clientServiceUrl = "http://" + applicationProperties.getDataCollectionServiceHost() + ":" + applicationProperties.getDataCollectionServicePort();
-            return restTemplate.getForObject(clientServiceUrl + "/getReport/clientsLoans/" + clientId, SingleClientReport.class);
+            return restTemplate.getForObject(clientServiceUrl + "/getReport/clientsLoans/" + clientId, ClientInfo.class);
         } catch (RuntimeException re) {
-            throw new ConstraintViolationException("error", Collections.emptySet());
+            throw new RuntimeException("error", re);
         }
     }
 

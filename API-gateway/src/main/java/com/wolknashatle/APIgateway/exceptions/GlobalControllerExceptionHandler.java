@@ -23,13 +23,13 @@ public class GlobalControllerExceptionHandler {
         return new ApiErrorResponce("Error", ex.toString(), map, new String[]{"101", "data collection service is not available"} );
     }
 
-    @ExceptionHandler(value = { NoHandlerFoundException.class })
+    @ExceptionHandler(value = { RuntimeException.class })
     @ResponseStatus(HttpStatus.NOT_FOUND)
-    public ApiErrorResponce noHandlerFoundException(Exception ex) {
+    public ApiErrorResponce noHandlerFoundException(RuntimeException ex) {
         Map<String, String> map = new HashMap<>();
-        map.put("errorCode", "400");
-        map.put("errorMessage", "BAD REQUEST");
-        return new ApiErrorResponce("Error", ex.toString(), map, new String[]{"errorCode", "errorMessage"} );
+        map.put("errorCode", "404");
+        map.put("errorMessage", "BAD ID");
+        return new ApiErrorResponce("Error", ex.toString(), map, new String[]{"102", "This id not found"} );
     }
 
 
