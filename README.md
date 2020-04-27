@@ -7,7 +7,7 @@ Microservice credit history cheking app (In progress)
 DESCRIPTION
 -----------
 
-This is a bank application capable to create reports or statistics about clients and loans. Client info situated in relational MySQL database and loans info - at non-relational MongoDB. Client can comunicate only with API Gateway which is single entry point for all users. This project is built in microservice arcgitekture. The services are implemented in Java using Spring boot and Spring Cloud.
+This is a bank application capable to create reports or statistics about clients and loans. Client info situated in relational MySQL database and loans info - at non-relational MongoDB. Client can comunicate only with API Gateway which is single entry point for all users. This project is built in microservice architekture. The services are implemented in Java using Spring boot and Spring Cloud.
 
 SCHEME
 -------
@@ -25,7 +25,6 @@ Technologies
 ------------
 - Java 11
 - Spring Boot
-- Spring MVC
 - MySQL
 - MongoDB
 - Hibernate, JDBC
