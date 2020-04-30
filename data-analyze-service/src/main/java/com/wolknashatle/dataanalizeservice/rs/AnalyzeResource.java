@@ -1,6 +1,5 @@
 package com.wolknashatle.dataanalizeservice.rs;
 
-import com.wolknashatle.dataanalizeservice.model.reports.LoansInfoReport;
 import com.wolknashatle.dataanalizeservice.model.statistics.UnpaidLoansStatistic;
 import com.wolknashatle.dataanalizeservice.service.GettingDataService;
 import org.springframework.beans.factory.annotation.Autowired;

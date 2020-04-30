@@ -1,6 +1,9 @@
 package com.wolknashatle.dataanalizeservice.service;
 
-import com.wolknashatle.dataanalizeservice.model.*;
+import com.wolknashatle.dataanalizeservice.model.ClientInfo;
+import com.wolknashatle.dataanalizeservice.model.ClientList;
+import com.wolknashatle.dataanalizeservice.model.Loan;
+import com.wolknashatle.dataanalizeservice.model.LoanList;
 import com.wolknashatle.dataanalizeservice.model.reports.LoansInfoReport;
 import com.wolknashatle.dataanalizeservice.model.statistics.UnpaidLoansStatistic;
 import com.wolknashatle.dataanalizeservice.properties.ApplicationProperties;
