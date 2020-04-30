@@ -1,7 +1,6 @@
 package com.wolknashatle.datacollectionservice.model.reports;
 
 import com.wolknashatle.datacollectionservice.model.ClientInfo;
-import com.wolknashatle.datacollectionservice.model.LoanInfo;
 
 import java.util.List;
 
