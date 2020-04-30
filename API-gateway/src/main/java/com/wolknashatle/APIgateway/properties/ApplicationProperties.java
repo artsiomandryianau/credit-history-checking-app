@@ -12,6 +12,12 @@ public class ApplicationProperties {
     @Value("${client-data-micro-service.port}")
     private String dataCollectionServicePort;
 
+    @Value("${data-analize-micro-service.host}")
+    private String dataCollectionServiceHost;
+
+    @Value("${client-data-micro-service.port}")
+    private String dataCollectionServicePort;
+
 
     public String getDataCollectionServiceHost() {
         return dataCollectionServiceHost;

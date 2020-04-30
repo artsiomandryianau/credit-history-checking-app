@@ -12,7 +12,7 @@
 	<artifactId>data-analize-service</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>data-analize-service</name>
-	<description>Service capable to analize data about clients and loans.</description>
+	<description>Service capable to analyze data about clients and loans.</description>
 
 	<properties>
 		<java.version>11</java.version>
