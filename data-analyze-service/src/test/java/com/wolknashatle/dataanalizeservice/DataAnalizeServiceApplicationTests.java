@@ -1,4 +1,4 @@
-package com.wolkNaShatle.dataanalizeservice;
+package com.wolknashatle.dataanalizeservice;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
