@@ -2,6 +2,7 @@ package com.wolknashatle.datacollectionservice.service;
 
 
 import com.wolknashatle.datacollectionservice.model.*;
+import com.wolknashatle.datacollectionservice.model.reports.LoansInfoReport;
 import com.wolknashatle.datacollectionservice.model.reports.OverdueLoansReport;
 import com.wolknashatle.datacollectionservice.model.reports.UnpaidLoansReport;
 import com.wolknashatle.datacollectionservice.properties.ApplicationProperties;
@@ -70,6 +71,21 @@ public class ReportService {
             Client client = restTemplate.getForObject(clientServiceUrl + "/client/" + loan.getClient_id().toString(), Client.class);
             LoanInfo overdueLoanInfo = new LoanInfo(client, loan);
             report.getOverdueLoanInfos().add(overdueLoanInfo);
+        }
+        return report;
+    }
+
+    public LoansInfoReport getAllLoans () {
+        String clientServiceUrl = "http://" + applicationProperties.getClientDataServicehost() + ":" + applicationProperties.getClientDataServicePort();
+        ClientList clientList = restTemplate.getForObject(clientServiceUrl + "/client/findAll", ClientList.class);
+        //Getting data from loan-data-service,
+        String loanServiceUrl = "http://" + applicationProperties.getLoanDataServiceHost() + ":" + applicationProperties.getLoanDataServicePort();
+        LoansInfoReport report = new LoansInfoReport(new ArrayList<>());
+        for (Client client: clientList.getClientList()) {
+            //Getting data from client-data-service
+            LoanList loanList = restTemplate.getForObject(loanServiceUrl +"/loans/client/" + client.getId(), LoanList.class);
+            ClientInfo clientInfo = new ClientInfo(client, loanList);
+            report.getClientInfos().add(clientInfo);
         }
         return report;
     }

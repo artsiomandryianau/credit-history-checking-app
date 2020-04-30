@@ -3,6 +3,7 @@ package com.wolknashatle.datacollectionservice.rs;
 
 import com.wolknashatle.datacollectionservice.model.ClientInfo;
 import com.wolknashatle.datacollectionservice.model.LoanInfo;
+import com.wolknashatle.datacollectionservice.model.reports.LoansInfoReport;
 import com.wolknashatle.datacollectionservice.model.reports.OverdueLoansReport;
 import com.wolknashatle.datacollectionservice.model.reports.UnpaidLoansReport;
 import com.wolknashatle.datacollectionservice.service.ReportService;
@@ -39,6 +40,10 @@ public class XmlCreationResource {
     }
 
 
+    @RequestMapping("/allLoans")
+    public LoansInfoReport getLoansReport() {
+        return reportService.getAllLoans();
+    }
 
 
 }
