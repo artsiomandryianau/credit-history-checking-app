@@ -2,7 +2,6 @@ package com.wolknashatle.APIgateway.model;
 
 public class ClientInfo {
 
-
     private Client client;
 
     private LoanList loanList;

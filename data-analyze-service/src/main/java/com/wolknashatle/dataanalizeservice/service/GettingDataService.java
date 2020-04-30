@@ -51,7 +51,6 @@ public class GettingDataService {
                     }
                 }
             }
-
             return unpaidLoansStatistic;
         } catch (RuntimeException re) {
             throw new ConstraintViolationException("error", Collections.emptySet());

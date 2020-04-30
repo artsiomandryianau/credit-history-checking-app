@@ -4,6 +4,7 @@ import com.wolknashatle.APIgateway.model.ClientInfo;
 import com.wolknashatle.APIgateway.model.LoanInfo;
 import com.wolknashatle.APIgateway.model.reports.OverdueLoansReport;
 import com.wolknashatle.APIgateway.model.reports.UnpaidLoansReport;
+import com.wolknashatle.APIgateway.model.statistics.UnpaidLoansStatistic;
 import com.wolknashatle.APIgateway.service.ConnectionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -34,6 +35,11 @@ public class ServiceConnectionResource {
     @RequestMapping("/get-loan-report/{loanId}")
     public LoanInfo getLoanReport(@PathVariable("loanId") String loanId) {
         return connectionService.getLoanReport(loanId);
+    }
+
+    @RequestMapping("/get-loan-stat-report")
+    public UnpaidLoansStatistic getLoansStatReport() {
+        return connectionService.getStatisticsReport();
     }
 
 }

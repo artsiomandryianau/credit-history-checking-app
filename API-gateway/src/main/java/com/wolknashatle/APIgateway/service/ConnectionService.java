@@ -4,6 +4,7 @@ import com.wolknashatle.APIgateway.model.ClientInfo;
 import com.wolknashatle.APIgateway.model.LoanInfo;
 import com.wolknashatle.APIgateway.model.reports.OverdueLoansReport;
 import com.wolknashatle.APIgateway.model.reports.UnpaidLoansReport;
+import com.wolknashatle.APIgateway.model.statistics.UnpaidLoansStatistic;
 import com.wolknashatle.APIgateway.properties.ApplicationProperties;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,6 +32,17 @@ public class ConnectionService {
             //Getting data from client-data-service!
             String clientServiceUrl = "http://" + applicationProperties.getDataCollectionServiceHost() + ":" + applicationProperties.getDataCollectionServicePort();
             return restTemplate.getForObject(clientServiceUrl + "/getReport/overdueReport/", OverdueLoansReport.class);
+        } catch (RuntimeException re) {
+            throw new ConstraintViolationException("error", Collections.emptySet());
+
+        }
+    }
+
+    public UnpaidLoansStatistic getStatisticsReport() {
+        try {
+            //Getting data from client-data-service!
+            String clientServiceUrl = "http://" + applicationProperties.getDataAnalyzeServiceHost() + ":" + applicationProperties.getDataAnalyzeServicePort();
+            return restTemplate.getForObject(clientServiceUrl + "/getStat/getLoansInfoReport", UnpaidLoansStatistic.class);
         } catch (RuntimeException re) {
             throw new ConstraintViolationException("error", Collections.emptySet());
 

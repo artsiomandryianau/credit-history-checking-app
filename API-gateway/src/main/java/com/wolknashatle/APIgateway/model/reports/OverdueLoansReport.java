@@ -8,7 +8,6 @@ import java.util.List;
 
 public class OverdueLoansReport {
 
-
     private List<LoanInfo> overdueLoanInfos;
 
     public OverdueLoansReport(List<LoanInfo> overdueLoanInfos) {

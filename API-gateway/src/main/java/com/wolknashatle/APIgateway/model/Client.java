@@ -3,7 +3,6 @@ package com.wolknashatle.APIgateway.model;
 
 public class Client {
 
-
     private Integer id;
     private String firstName;
     private String lastName;
